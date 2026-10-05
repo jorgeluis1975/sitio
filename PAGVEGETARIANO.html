@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verde Natural - Restaurante Vegetariano</title>
+
+    <style>
+        /* =========================
+           ESTILOS GENERALES
+        ========================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8f2;
+            color: #333;
+        }
+
+        /* =========================
+           ENCABEZADO
+        ========================== */
+        header {
+            background: #245c36;
+            color: white;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #b7e36b;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #b7e36b;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           PORTADA
+        ========================== */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+
+            background:
+                linear-gradient(rgba(20,60,30,0.65), rgba(20,60,30,0.65)),
+                url("https://static.vecteezy.com/system/resources/thumbnails/003/350/915/small/top-view-of-healthy-food-background-photo.jpg");
+
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #8bc34a;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #689f38;
+            transform: scale(1.05);
+        }
+
+        /* =========================
+           SECCIONES
+        ========================== */
+        section {
+            padding: 70px 8%;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .titulo h2 {
+            color: #245c36;
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .titulo p {
+            color: #666;
+        }
+
+        /* =========================
+           NOSOTROS
+        ========================== */
+        .nosotros {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nosotros img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .nosotros-texto h3 {
+            color: #245c36;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .nosotros-texto p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           MENU DE PLATOS
+        ========================== */
+        .menu {
+            background: #eaf3e5;
+        }
+
+        .filtros {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .filtros button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background: #245c36;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .filtros button:hover {
+            background: #8bc34a;
+        }
+
+        .platos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .plato {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+            transition: 0.3s;
+        }
+
+        .plato:hover {
+            transform: translateY(-8px);
+        }
+
+        .plato img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .plato-info {
+            padding: 20px;
+        }
+
+        .plato-info h3 {
+            color: #245c36;
+            margin-bottom: 10px;
+        }
+
+        .plato-info p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .precio {
+            color: #689f38;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           BENEFICIOS
+        ========================== */
+        .beneficios {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            text-align: center;
+        }
+
+        .beneficio {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .beneficio .icono {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .beneficio h3 {
+            color: #245c36;
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           RESERVAS
+        ========================== */
+        .reserva {
+            background: #245c36;
+            color: white;
+        }
+
+        .formulario {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            color: #333;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .campo input,
+        .campo select,
+        .campo textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .campo textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .formulario .btn {
+            width: 100%;
+        }
+
+        /* =========================
+           CONTACTO
+        ========================== */
+        .contacto {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contacto-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .contacto-box h3 {
+            color: #245c36;
+            margin-bottom: 15px;
+        }
+
+        .contacto-box p {
+            margin: 12px 0;
+        }
+
+        /* =========================
+           PIE DE PAGINA
+        ========================== */
+        footer {
+            background: #173c25;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .redes {
+            margin: 15px 0;
+        }
+
+        .redes a {
+            color: white;
+            font-size: 25px;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        /* =========================
+           BOTON ARRIBA
+        ========================== */
+        #arriba {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #8bc34a;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: none;
+            z-index: 999;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+        @media (max-width: 900px) {
+
+            .platos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .beneficios {
+                grid-template-columns: 1fr;
+            }
+
+            .nosotros,
+            .contacto {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #245c36;
+                display: none;
+            }
+
+            nav.activo {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .platos {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         ENCABEZADO
+    ========================== -->
+
+    <header>
+
+        <div class="logo">
+            🌱 Verde<span>Natural</span>
+        </div>
+
+        <div class="menu-btn" onclick="mostrarMenu()">
+            ☰
+        </div>
+
+        <nav id="navegacion">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#beneficios">Beneficios</a></li>
+                <li><a href="#reserva">Reservas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         INICIO
+    ========================== -->
+
+    <section class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <h1>Verde Natural</h1>
+
+            <p>
+                Restaurante vegetariano con sabores naturales,
+                saludables y deliciosos.
+            </p>
+
+            <a href="#menu" class="btn">
+                Ver nuestro menú
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         NOSOTROS
+    ========================== -->
+
+    <section id="nosotros">
+
+        <div class="titulo">
+
+            <h2>🌿 Sobre Nosotros</h2>
+
+            <p>
+                Alimentación saludable y productos naturales.
+            </p>
+
+        </div>
+
+        <div class="nosotros">
+
+            <img
+                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80"
+                alt="Comida vegetariana">
+
+            <div class="nosotros-texto">
+
+                <h3>Una forma diferente de alimentarse</h3>
+
+                <p>
+                    En Verde Natural ofrecemos alimentos vegetarianos
+                    preparados con ingredientes frescos y naturales.
+                </p>
+
+                <p>
+                    Nuestro objetivo es brindar una experiencia
+                    gastronómica agradable, saludable y accesible
+                    para toda la familia.
+                </p>
+
+                <p>
+                    🌱 Ingredientes naturales<br>
+                    🥗 Alimentación equilibrada<br>
+                    ♻️ Compromiso con el medio ambiente
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MENU
+    ========================== -->
+
+    <section class="menu" id="menu">
+
+        <div class="titulo">
+
+            <h2>🥗 Nuestro Menú</h2>
+
+            <p>
+                Descubre nuestras opciones vegetarianas.
+            </p>
+
+        </div>
+
+
+        <div class="filtros">
+
+            <button onclick="filtrarPlatos('todos')">
+                Todos
+            </button>
+
+            <button onclick="filtrarPlatos('ensalada')">
+                Ensaladas
+            </button>
+
+            <button onclick="filtrarPlatos('principal')">
+                Platos principales
+            </button>
+
+            <button onclick="filtrarPlatos('bebida')">
+                Bebidas
+            </button>
+
+        </div>
+
+
+        <div class="platos">
+
+            <!-- PLATO 1 -->
+
+            <div class="plato ensalada">
+
+                <img
+                    src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
+                    alt="Ensalada">
+
+                <div class="plato-info">
+
+                    <h3>Ensalada Verde</h3>
+
+                    <p>
+                        Lechuga, tomate, zanahoria,
+                        pepino y semillas.
+                    </p>
+
+                    <div class="precio">
+                        Bs. 25
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLATO 2 -->
+
+            <div class="plato principal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=800&q=80"
+                    alt="Hamburguesa vegetariana">
+
+                <div class="plato-info">
+
+                    <h3>Hamburguesa Vegetariana</h3>
+
+                    <p>
+                        Hamburguesa vegetal, verduras frescas
+                        y pan artesanal.
+                    </p>
+
+                    <div class="precio">
+                        Bs. 30
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLATO 3 -->
+
+            <div class="plato principal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80"
+                    alt="Pasta vegetariana">
+
+                <div class="plato-info">
+
+                    <h3>Pasta Vegetal</h3>
+
+                    <p>
+                        Pasta artesanal acompañada de verduras
+                        y salsa natural.
+                    </p>
+
+                    <div class="precio">
+                        Bs. 32
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLATO 4 -->
+
+            <div class="plato ensalada">
+
+                <img
+                    src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80"
+                    alt="Bowl vegetariano">
+
+                <div class="plato-info">
+
+                    <h3>Bowl Vegetariano</h3>
+
+                    <p>
+                        Arroz, verduras, legumbres y
+                        semillas naturales.
+                    </p>
+
+                    <div class="precio">
+                        Bs. 28
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLATO 5 -->
+
+            <div class="plato bebida">
+
+                <img
+                    src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=800&q=80"
+                    alt="Jugo natural">
+
+                <div class="plato-info">
+
+                    <h3>Jugo Natural</h3>
+
+                    <p>
+                        Deliciosos jugos preparados con
+                        frutas naturales.
+                    </p>
+
+                    <div class="precio">
+                        Bs. 12
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLATO 6 -->
+
+            <div class="plato bebida">
+
+                <img
+                    src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=80"
+                    alt="Infusión natural">
+
+                <div class="plato-info">
+
+                    <h3>Infusión Natural</h3>
+
+                    <p>
+                        Infusión de hierbas naturales
+                        seleccionadas.
+                    </p>
+
+                    <div class="precio">
+                        Bs. 10
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BENEFICIOS
+    ========================== -->
+
+    <section id="beneficios">
+
+        <div class="titulo">
+
+            <h2>🌱 ¿Por qué elegirnos?</h2>
+
+            <p>
+                Una alimentación consciente y deliciosa.
+            </p>
+
+        </div>
+
+
+        <div class="beneficios">
+
+            <div class="beneficio">
+
+                <div class="icono">🥬</div>
+
+                <h3>Ingredientes Frescos</h3>
+
+                <p>
+                    Seleccionamos ingredientes frescos
+                    para nuestros platos.
+                </p>
+
+            </div>
+
+
+            <div class="beneficio">
+
+                <div class="icono">❤️</div>
+
+                <h3>Alimentación Saludable</h3>
+
+                <p>
+                    Opciones vegetarianas pensadas
+                    para una alimentación equilibrada.
+                </p>
+
+            </div>
+
+
+            <div class="beneficio">
+
+                <div class="icono">♻️</div>
+
+                <h3>Cuidado Ambiental</h3>
+
+                <p>
+                    Promovemos hábitos responsables
+                    con nuestro entorno.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         RESERVAS
+    ========================== -->
+
+    <section class="reserva" id="reserva">
+
+        <div class="titulo">
+
+            <h2 style="color:white;">
+                📅 Reserva tu mesa
+            </h2>
+
+            <p style="color:white;">
+                Completa el formulario para solicitar tu reserva.
+            </p>
+
+        </div>
+
+
+        <form class="formulario" onsubmit="reservar(event)">
+
+            <div class="campo">
+
+                <label for="nombre">
+                    Nombre completo
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Escribe tu nombre"
+                    required>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="fecha">
+                    Fecha
+                </label>
+
+                <input
+                    type="date"
+                    id="fecha"
+                    required>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="hora">
+                    Hora
+                </label>
+
+                <input
+                    type="time"
+                    id="hora"
+                    required>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="personas">
+                    Número de personas
+                </label>
+
+                <select id="personas" required>
+
+                    <option value="">
+                        Seleccionar
+                    </option>
+
+                    <option value="1">
+                        1 persona
+                    </option>
+
+                    <option value="2">
+                        2 personas
+                    </option>
+
+                    <option value="3">
+                        3 personas
+                    </option>
+
+                    <option value="4">
+                        4 personas
+                    </option>
+
+                    <option value="5">
+                        5 personas
+                    </option>
+
+                    <option value="6">
+                        6 personas
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="mensaje">
+                    Mensaje
+                </label>
+
+                <textarea
+                    id="mensaje"
+                    placeholder="Alguna observación...">
+                </textarea>
+
+            </div>
+
+
+            <button type="submit" class="btn">
+                Confirmar reserva
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACTO
+    ========================== -->
+
+    <section id="contacto">
+
+        <div class="titulo">
+
+            <h2>📍 Contacto</h2>
+
+            <p>
+                Estamos para atenderte.
+            </p>
+
+        </div>
+
+
+        <div class="contacto">
+
+            <div class="contacto-box">
+
+                <h3>Información</h3>
+
+                <p>📍 Dirección: Av. Principal #123</p>
+
+                <p>📞 Teléfono: 70000000</p>
+
+                <p>✉️ Email: contacto@verdenatural.com</p>
+
+                <p>🕐 Lunes a sábado: 09:00 - 22:00</p>
+
+            </div>
+
+
+            <div class="contacto-box">
+
+                <h3>🌱 Verde Natural</h3>
+
+                <p>
+                    Restaurante vegetariano dedicado a
+                    ofrecer alimentos naturales y deliciosos.
+                </p>
+
+                <p>
+                    ¡Te esperamos para disfrutar
+                    nuestros sabores!
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PIE DE PAGINA
+    ========================== -->
+
+    <footer>
+
+        <h3>🌱 Verde Natural</h3>
+
+        <div class="redes">
+
+            <a href="#" onclick="mensajeRed('Facebook')">
+                f
+            </a>
+
+            <a href="#" onclick="mensajeRed('Instagram')">
+                ◎
+            </a>
+
+            <a href="#" onclick="mensajeRed('WhatsApp')">
+                ☎
+            </a>
+
+        </div>
+
+        <p>
+            © 2026 Verde Natural - Restaurante Vegetariano
+        </p>
+
+    </footer>
+
+
+    <!-- BOTON SUBIR -->
+
+    <button id="arriba" onclick="subirArriba()">
+        ↑
+    </button>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        // MENÚ RESPONSIVO
+        function mostrarMenu() {
+
+            const navegacion =
+                document.getElementById("navegacion");
+
+            navegacion.classList.toggle("activo");
+
+        }
+
+
+        // FILTRAR PLATOS
+        function filtrarPlatos(categoria) {
+
+            const platos =
+                document.querySelectorAll(".plato");
+
+            platos.forEach(function(plato) {
+
+                if (categoria === "todos") {
+
+                    plato.style.display = "block";
+
+                } else {
+
+                    if (plato.classList.contains(categoria)) {
+
+                        plato.style.display = "block";
+
+                    } else {
+
+                        plato.style.display = "none";
+
+                    }
+
+                }
+
+            });
+
+        }
+
+
+        // RESERVA
+        function reservar(event) {
+
+            event.preventDefault();
+
+            const nombre =
+                document.getElementById("nombre").value;
+
+            const fecha =
+                document.getElementById("fecha").value;
+
+            const hora =
+                document.getElementById("hora").value;
+
+            const personas =
+                document.getElementById("personas").value;
+
+            alert(
+                "¡Reserva realizada correctamente! 🌱\n\n" +
+                "Cliente: " + nombre + "\n" +
+                "Fecha: " + fecha + "\n" +
+                "Hora: " + hora + "\n" +
+                "Personas: " + personas
+            );
+
+        }
+
+
+        // BOTÓN SUBIR
+        window.addEventListener("scroll", function() {
+
+            const boton =
+                document.getElementById("arriba");
+
+            if (window.scrollY > 300) {
+
+                boton.style.display = "block";
+
+            } else {
+
+                boton.style.display = "none";
+
+            }
+
+        });
+
+
+        function subirArriba() {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        // REDES SOCIALES
+        function mensajeRed(red) {
+
+            event.preventDefault();
+
+            alert(
+                "Próximamente podrás visitar nuestro perfil de " +
+                red + " 🌱"
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
